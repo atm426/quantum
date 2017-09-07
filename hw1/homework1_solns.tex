@@ -12,9 +12,21 @@
 
 We start with
 
-\begin{displaymath}
+$[AB, CD] = A[B, CD] + [A, CD]B$ \\
+$\rightarrow$ $A([B,C]D + C[B,D]) + ([A,C]D+C[A,D])B$ \\
+Then, writing out each commutation relation \\
+$\rightarrow$ $ABCD-ACBD+ACBD-ACDB+ACDB-CADB+CADB-CDAB$ \\
+The second and fourth terms from the above line can be combined to give $-AC\{D,B\}$ \\
+$\rightarrow$ $-AC\{D,B\} + ABCD + ACBD +ACDB-CADB+CADB-CDAB$ \\
+The second and third terms from the above line can be combined to give $A\{C,B\}D$ \\
+$\rightarrow$ $-AC\{D,B\} + A\{C,B\}D +ACDB-CADB+CADB-CDAB$ \\
+The fourth and sixth terms from the above line can be combined to give $-C\{D,A\}B$ \\
+$\rightarrow$ $-AC\{D,B\} + A\{C,B\}D - C\{D,A\}B +ACDB+CADB$ \\
+The last two terms from the above line are then combined to give $\{C,A\}DB$ \\
+$\rightarrow$ $-AC\{D,B\} + A\{C,B\}D - C\{D,A\}B + \{C,A\}DB$ \\
+Thus we have proved that \\
+$\boxed{[AB, CD] = -AC\{D,B\} + A\{C,B\}D - C\{D,A\}B + \{C,A\}DB}$ \\
 
-\end{displaymath}
 
 \section{Problem 2}
 
