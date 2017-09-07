@@ -1,0 +1,305 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, color, graphicx, indentfirst, float, wrapfig}
+\usepackage[margin=1in]{geometry}
+
+\title{Hall Effect in a Semiconductor}
+\author{Austin McDowell \\ \scriptsize Lab Partner: Mackenzie Moody}
+ 
+\begin{document}
+\maketitle
+
+\begin{abstract}
+%===================================
+%Summary of experiment and findings
+%===================================
+In this experiment we expose a small Germanium crystal to an external magnetic field and voltage in order to measure the Hall Effect and calculate properties of the Germanium semiconductor. We calculated the value of the Hall coefficient to be $-0.10m^{-3}/C$, which tells us that our sample is a p-type semiconductor. Carrier concentration was also found to be around $2\times10^{18}m^{-3}$ which agrees with published literature. Additionally, we generated plots of mobility, resistivity, carrier concentration, and others as a function of temperature.  
+
+
+\end{abstract}
+\section{Introduction}
+%==================================================
+%Description of physics and the purpose of the lab
+%==================================================
+With combined knowledge of quantum mechanics and electrodynamics we can learn about the internal workings of semiconductors. In quantum mechanics we are introduced to quantized energy levels in the structure of atoms. By extending this concept we can understand the formation of energy \textit{bands} in solids. Additionally, the understanding of the motion of charged particles in electric and magnetic fields allows us to explain how charge carriers move throughout the semiconductor.  
+
+By applying a voltage to a Germanium crystal and exposing it to an external magnetic field we can measure the induced Hall Effect and subsequently use our measurements to determine properties of the Germanium crystal such as resistivity, charge carrier density, and charge carrier mobility. From these properties we can determine the semiconductor type which will be either \textit{p-type} or \textit{n-type}.
+ 
+In \S2 we discuss the theory behind semiconductor structure and the production of the Hall Effect. We continue in \S3 with the experimental set-up and the procedure of making measurements. \S4 covers the measurements and calculation of relevant semiconductor properties. Finally, we will conclude in \S5 with the salient results of the experiment. 
+
+\section{Theory}
+%===========================================
+%Explanation of equations and what they mean
+%===========================================
+\subsection*{Band Structure of Solids} 
+Quantum mechanics explains to us the quantized energy levels of a single atom. However, in solids, this structure is markedly different. A solid's constituent atoms are so close together that energy levels no longer come in single, discreet values. Instead, the energy levels of the individual atoms combine to create a continuous range of allowable energy levels known as energy bands. Each band has a finite width that describes the range of occupiable energies. For any solid there are two primary bands of interest: the valence band and the conduction band. The valence band is the band with the highest energy that is \textit{completely} filled. Whereas the conduction band is the lowest allowed energy band that is not entirely occupied. 
+
+The finite width of energy bands results in the formation of band gaps between two adjacent energy bands. As the name suggests, band gaps describe energies that can \textit{not} be occupied. The width of energy bands, band gaps, and location of the Fermi Energy relative to the two all play an important role in the properties of the solid in question.
+
+Since the electrons in a solid are degenerate we must use Fermi-Dirac statistics to understand their behavior. In the limit of zero temperature the electrons will occupy all of the lowest available energy states up to the Fermi Energy, $E_{F}$. At any temperature above zero this distribution will be modified and some of the electrons that were originally close to the Fermi Energy will have an energy greater than $E_{F}$. For conductors the Fermi Energy is located inside an energy band. This means that electrons with energy at or near the Fermi Energy are easily excited into a higher energy state. Insulators, on the other hand, have a Fermi Energy that is separated from the conduction band by a large band gap. This results in large energies needed to excite electrons at the Fermi Energy into higher states. Below are diagrams which detail this difference between conductors and insulators [1]. The conduction and valence bands are labeled as such, and the white regions between the two are the band gaps. 
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[t]{0.4\textwidth}
+    \centering
+    \vspace{0pt}
+    \includegraphics[scale=0.7]{SHEimage016.png}
+    \caption{\scriptsize Conductor band structure, Fermi Energy shown by $E_{F}$}
+  \end{minipage} \hfill
+  \begin{minipage}[t]{0.4\textwidth}
+    \centering
+    \vspace{0pt}
+    \includegraphics[scale=0.7]{SHEimage017.png}
+    \caption{\scriptsize Insulator band structure, Fermi Energy shown by $E_{F}$}
+  \end{minipage}
+\end{figure}
+
+
+ 
+\begin{wrapfigure}{r}{0.27\textwidth}
+  \begin{center}
+    \includegraphics[width=\linewidth]{semibands.pdf}
+    \label{fig:semibands}
+    \end{center}
+  \caption{\scriptsize Semiconductor band structure}
+\end{wrapfigure}
+
+The structure of a semiconductor is halfway between that of a conductor and an insulator and is shown in the figure to the right [2]. The Fermi Energy is indicated by the dotted line and the arrow labeled $E_{F}$. From this we can see that the Fermi Energy is in between the conduction band and the valence band (here labeled 'normally filled band'). On the left hand side of the figure is the normal Fermi-Dirac distribution for a free electron gas at a non-zero temperature. The right hand side indicates the actual density of states found in the semiconductor. In semiconductors the energy gap between the conduction band and the valence band (labeled $E_{g}$ in Fig. 3) is on the order of a particle's average thermal energy, $kT$. Therefore, as temperature changes one would expect to see changes in the occupation of the conduction and valence bands. 
+
+The small value of $E_{g}$ allows for semiconductors to be effectively doped. Doping involves introducing impurities into the semiconductor which create a new energy level in the previously bereft band gap. This new energy level causes a shift in the Fermi Energy. Doping the semiconductor with donors introduces a new, filled energy level near the conduction band and causes the Fermi Energy to increase. In this case, the semiconductor is an n-type since most of the charge carriers have a negative charge. Alternatively, doping the semiconductor with acceptors creates new, unfilled energy levels near the valence band and causes the Fermi Energy to decrease. The semiconductor, in this case, is now a p-type semiconductor since most of the charge carriers have a positive charge. Doping a semiconductor allows for one to adjust the energy needed by electrons when transferring between the conduction and valence bands.
+
+\subsection*{Hall Effect and the Van Der Pauw Technique}
+Imagine we run a current through a semiconductor which has been placed in a magnetic field. The moving charges in the semiconductor will experience a force equal to
+\begin{equation}
+\vec{F} = q(\vec{v} \times \vec{B})
+\end{equation}
+where $q$ is the charge of the charge carriers, $v$ is the charge carrier velocity, and $B$ is the strength of the magnetic field. If the current and magnetic field are orthogonal to each other (consider a current in the $\hat{x}$ direction and a magnetic field in the $\hat{z}$ direction) then the total force on the carriers will be in the $\hat{y}$ direction if $q$ is positive and in the $-\hat{y}$ direction if $q$ is negative. Consider electrons for the moment; in this set up there will be a net migration of electrons in the $-\hat{y}$ direction. This creates a net negative charge on the $-\hat{y}$ portion of the semiconductor and a net positive charge on the $+\hat{y}$ portion. This charge inequality creates an electric field (known as the Hall Field) which, over time, balances the force from the magnetic field. 
+
+\begin{wrapfigure}{l}{0.5\textwidth}
+  \begin{center}
+    \includegraphics[width=\linewidth]{SHEimage028.pdf}
+    \label{fig:halleff}
+    \end{center}
+  \caption{\scriptsize Diagram of the Hall Effect, in this figure $E_{H}$ is labeled $E_{x}$}
+\end{wrapfigure}
+
+This scenario is shown here in the figure on the left [1]. If we modify equation (1) to include this electric force and consider a time where the total force is equal to zero we see that
+\begin{equation} 
+E_{H} = vB
+\end{equation}.
+Notice that the sign of the produced Hall field (and thus the Hall voltage, $V_{H}$) will tell us whether our semiconductor is n-type or p-type.
+
+From the dimensions of our semiconductor and the measured value of current we can determine the number density of the charge carriers. Recall that the current is given by current density multiplied by an area; in this case the area is $ds$ as given in Fig. 4. From the current density $J=qnvsd$, where $n$ is the number density of the charge carriers, and $E_{H}=\frac{V_{H}}{s}$ we can rearrange equation 2 to give us an expression for the Hall voltage in terms of current, magnetic field, charge, thickness of our sample, and charge carrier number density:
+\begin{equation}
+V_{H} = -\frac{IB}{qnd}
+\end{equation}
+Therefore, by setting $B$ and $I$ we can measure the Hall voltage and use our knowledge of $q$ and $d$ to calculate the number density $n$. We can define another value, the Hall coefficient, as
+\begin{equation}
+R_{H} = \frac{E_{H}}{JB}
+\end{equation}
+. When the Hall voltage is negative the Hall coefficient will give us the number density of the negative charge carriers, now called $n$:
+\begin{displaymath}
+R_{H} = \frac{1}{qn}
+\end{displaymath}
+Whereas when the Hall voltage is positive, we can use the Hall coefficient to find the number density of the positive charge carriers, $p$:
+\begin{displaymath}
+R_{H} = -\frac{1}{qp}
+\end{displaymath}
+However, the current $I$ is likely a combination of positive and negative charge carriers. In order to calculate their individual densities we must use the Van Der Pauw Technique. 
+
+Consider a sample of Germanium as shown in Figure 4. By creating four contacts on the sample, as shown in Figure 5, we can drive a current between any two contacts and measure the voltage across the other two contacts. 
+
+\begin{wrapfigure}{r}{0.2\textwidth}
+  \begin{center}
+    \includegraphics[width=\linewidth]{SHEimage052.pdf}
+    \label{fig:halleff}
+    \end{center}
+  \caption{\scriptsize Set up for Van Der Pauw measurements; A,B,C,D are all points of contact}
+\end{wrapfigure}
+
+For example, if a current is driven from contact A to contact B then the voltage across contacts C and D will be measured. These measurements are said to occur in the 'forward' direction. By combining the current, $I_{AB}$, with the voltage, $V_{CD}$, we can obtain a quantity known as the \textit{trans-resistance}
+\begin{displaymath}
+R_{AB,CD} = \frac{V_{CD}}{I_{AB}}
+\end{displaymath}
+These measurements can be repeated for each point to obtain four values of current, voltage, and trans-resistance. Additionally, the current can be driven in the reverse direction. Instead of driving a current from contact A to contact B, one can drive the current from contact B to contact A. Similarly, the voltage is now measured from contact D to contact C. Repeating this process for each contact gives a set of 'reverse' values for current, voltage, and trans-resistance which should match the first set obtained up to a sign. 
+
+Measurements obtained by driving a current between two diagonal points (A and C or B and D) can be used to calculate the Hall voltage. By calculating an average trans-resistance,
+\begin{displaymath}
+R_{avg} = \frac{1}{2}\big(R_{AC,BD} + R_{BD,CA}\big) = \frac{V_{H}}{I}
+\end{displaymath}
+and rearranging equations (3) and (4) we can find an expression for the Hall coefficient in terms of the magnetic field, $R_{avg}$, and the thickness of our sample $d$: 
+\begin{displaymath}
+R_{H} = -\frac{d}{B}R_{avg}
+\end{displaymath}
+
+The next quantity to determine is the resistivity of the sample, $\rho$. Calculating resistivity involves adjacent contact points: A and B, A and D, B and C, or D and C. Using two sets of adjacent trans-resistances and the Van Der Pauw equation,
+\begin{displaymath}
+exp\bigg(-\frac{\pi d}{\rho}R_{AB,CD}\bigg) + exp\bigg(-\frac{\pi d}{\rho}R_{AD,CB}\bigg) = 1
+\end{displaymath} 
+, we can solve for $\rho$ in terms of measurable quantities [1]:
+\begin{equation}
+\rho = \frac{\pi d}{ln(2)}\cdot\frac{R_{AB,CD} + R_{AD,CB}}{2}\cdot f\bigg(\frac{R_{AB,CD}}{R_{AD,CB}}\bigg)
+\end{equation}
+In equation (5) $f$ is a function of the ratio of trans-resistances and is given by
+\begin{displaymath}
+f(x) = \frac{1}{cosh\big(\frac{ln(x)}{2.403}\big)}
+\end{displaymath}
+[1].
+
+Finally, from the resistivity we can calculate the mobility, $\mu$ of each charge carrier which describes how quickly a carrier can travel through the semiconductor. When combined with the electric field strength the mobility can be used to find the drift velocity of each carrier. Mobility is related to $\rho$, $n$, and $p$ by 
+\begin{equation}
+\frac{1}{\rho} = q(n\mu_{n} + p\mu_{p})
+\end{equation}
+where $\mu_{n}$ and $\mu_{p}$ are the mobilities for negative charge carriers and positive charge carriers, respectively [1]. One could then calculate their drift velocities using the mobility. 
+Our last use for $\rho$ is to combine it with $R_{H}$ to define a quantity called the Hall mobility
+\begin{equation}
+\mu_{H} = \frac{R_{H}}{\rho}
+\end{equation}
+which is a specific mobility obtained when measuring the Hall effect [1]. We can see from equations (6) and (7) that when only one type of carrier is present the mobility of that carrier is equal to the Hall mobility. 
+\section{Apparatus}
+%================================
+%General set up of the experiment
+%================================
+The total experiment apparatus can be roughly divided into two parts. The first part, shown below, is used in controlling the temperature of the Germanium sample [1].
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[t]{0.6\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{SHEimage100.pdf}
+    \caption{\scriptsize Cryostat; temperature control portion of apparatus}
+    \label{fig:tempcnt}
+    \end{minipage}
+\end{figure}
+The SST cryostat chamber holds the liquid nitrogen that is used to lower the temperature of the sample and the cold finger rod conducts heat between the sample and this chamber. A section of brass is included in the cold finger rod in order to limit the rate of heat transfer to or from the sample. The sample itself is kept in a vacuum to prevent oxidation at higher temperatures. Also inside the vacuum is the 50 Watt heating coil which is used to raise the temperature of the sample during the experiment. Lastly, the Germanium sample is stationed on a copper block that contains the four connections (A, B, C, D) mentioned above and a temperature diode for recording the sample's temperature. 
+
+The next section of the apparatus is shown below and contains the magnet and the multiple tools for measuring the voltage, current, temperature, and magnetic field [1].
+
+\vfill
+\begin{wrapfigure}{l}{0.5\textwidth}
+  \begin{center}
+    \includegraphics[width=\linewidth]{SHEimage101.pdf}
+    \label{fig:hallblock}
+    \end{center}
+  \caption{\scriptsize Block diagram for experiment}
+\end{wrapfigure}
+
+The cryostat shown discussed above is shown in Figure 7 as the grey block labeled \textit{Ge Sample in Cryostat}. At the top right, underneath the magnet power supply is the vacuum pump used to create the vacuum mentioned in the cryostat description above. Below the pump are the gold and grey boxes. For our experiment we used the gold box which is controlled by the computer via the computer interface box. Starting on the top left we have the water cooling lines which prevent the electromagnet from overheating. Next, between the water interlock box and the computer, are the four measurement devices used when taking data. These devices measure voltage, current, temperature, and magnetic field as the temperature of the sample is varied from the starting temperature to the final temperature. 
+\section{Procedure}
+%============================
+%Steps for completing the lab
+%============================
+After reviewing the safety materials for handling cryogenic liquids we began the experiment by turning on the computer and then opening the water valves. When opening the valves, we first opened the valve labeled \textit{Return} followed by the valve labeled \textit{Main Water}. Once the valves were opened we pressed the button on the water interlock box until the green LED is illuminated. If the vacuum was off we turned it on and then turned on the computer and all of the equipment located on the rack above the table as well as the gold box and the power supply for the electromagnet. Next, we filled the cryostat with liquid nitrogen and waited until the temperature dropped to 240 Kelvin. At this point we added more liquid nitrogen and waited until the temperature went below 95 Kelvin. Once this temperature was reached we used a pre-written LabView program to collect data as the temperature of the sample was varied. Data was taken from 95 Kelvin to 350 Kelvin in steps of 5 Kelvin. Fixed values for the magnetic field and driving current were chosen at the beginning of the run. Then, for each temperature data point, current and voltage were measured between the connections shown in Figure 5 in both the 'forward' and 'reverse' directions mentioned in \S2. Additionally, each measurement of current and voltage was taken for positive, negative, and zero magnetic field. In this case, positive, negative, and zero were determined by the direction of the current in the electromagnet. When the run was finished we collected the output data. The analysis of this data will be the topic of the following section.  
+
+\section{Analysis}
+%============================================================
+%Calculation of quantities and error, as well as explanations
+%============================================================
+We did several runs with different values of magnetic field between 3500 and 5000 Gauss and different values of driving current between $5\times10^{-6}$ and $5\times10^{-4}$ Amps. The data presented below are from a run with magnetic field equal to 5000 Gauss and current equal to $5\times10^{-4}$. These data were chosen because they allowed us to highlight the salient semiconductor properties. 
+
+Additionally, our only knowledge of error is in the size of the Germanium sample since the LabView program did not return error for the measured values. This error is orders of magnitude smaller than any of the calculated values presented below, thus, including associated errors would be superfluous. Lastly, there was no theoretical justification for providing any type of fit to the collected data (except for a scaling law for the mobility). Therefore, all curves shown below are provided for the ease of viewing data points and are not meant to imply any kind of interpolation unless noted otherwise. 
+
+The first calculated quantity is the Hall Coefficient, $R_{H}$. Below are plots of $R_{H}$ as a function of temperature and inverse temperature. Two plots are shown below: $R_{H}$ as a function of temperature and $R_{H}$ as a function of inverse temperature. Each setting of magnetic field (positive, negative, or zero) has a trans-resistance measurement in both the 'forward' and 'reverse' directions. This results in the six different curves shown below. We found that the Hall coefficient crosses 0 at a temperature of 275K. 
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[t]{0.4\textwidth}
+    \centering
+    \vspace{0pt}
+    \includegraphics[scale=0.45]{hallcoeffvtemp.pdf}
+    \caption{\scriptsize Hall coefficient vs temperature}
+  \end{minipage} \hfill
+  \begin{minipage}[t]{0.4\textwidth}
+    \centering
+    \vspace{0pt}
+    \includegraphics[scale=0.45]{hallcoeffvinvtemp.pdf}
+    \caption{\scriptsize Hall coefficient vs inverse temperature}
+  \end{minipage}
+\end{figure}
+Using equations (3) and (4) we can see that our negative Hall coefficient tells us that our sample is a \textbf{p-type} semiconductor. For each magnetic field setting we used the values given by the forward and reverse trans-resistance to calculate three average values for $R_{H}$ at room temperature ($\approx300K$). The calculated values were $-0.100 \frac{m^3}{C}$, $-0.113 \frac{m^3}{C}$, and $-0.0028\frac{m^3}{C}$ for positive, negative, and zero magnetic field, respectively.
+
+Once the Hall Coefficient and type of semiconductor was known we calculated the concentration of the charge carriers as a function of temperature. Shown below and to the right are plots of carrier concentration vs. temperature in the extrinsic region. Since our semiconductor is p-type, we know that, in the extrinsic region, the concentration of holes is greater than that of the electrons. For this reason, the curves shown in Figure 10 can be said to describe the concentration of holes, $p$. At higher temperatures electrons are thermally excited from the valence band to the conduction band and thus the concentration would include both electrons and holes. To find the hole concentration more accurately we chose to focus on the extrinsic region in order to make the simplification that the concentration of electrons is close to 0. Using values obtained from the curves we found the carrier (hole) concentration in the extrinsic region to be $2.19\times10^{18}m^{-3}$ and $2.106\times10^{18}m^{-3}$ for positive and negative magnetic field, respectively.
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+  \begin{center}
+    \vspace{-10mm}
+    \includegraphics[width=\linewidth]{carconvtemp.pdf}
+    \label{fig:carconvtemp}
+    \end{center}
+  \vspace{-12mm}
+  \caption{\scriptsize Carrier concentration vs temperature}
+\end{wrapfigure}
+
+
+Next, using the Van Der Pauw equation (equation (5)) and calculated values of trans-resistance we produced plots of resistivity and conductivity as functions of inverse temperature which are shown below. As before, we have six different curves corresponding to the various magnetic field settings and directions of measurement. In the graphs below temperature increases to the left. The region to the left of the peak is the \textbf{intrinsic} region. In this region the average thermal energy of an electron is high enough to bridge the band gap between the valence and conduction bands. This results in a higher electron density and therefore a lower resistivity. As the temperature decreases the number of the electrons in the conduction band also decreases leading to a rise in the resistivity until, eventually, the resistivity peaks. From the graphs below we can see that this happens around $1000/T \approx 4$, or $T\approx250K$. Looking at the maximums of our resistivity curves we found that the actual temperature separating the intrinsic and extrinsic regions was closer to $242K$. The region to the right of the peak is the \textbf{extrinsic} region. In this region, the density of electrons in the conduction band is very low and the resistivity is due largely to the positive charge carriers, holes, introduced by the doping element. At the peak of resistivity, the holes have high, random thermal velocities. We know from experience with conductors that these random velocities stymie a bulk movement of charge (current) in a particular direction since the charge carriers frequently collide and exchange momentum. At lower temperature the rate of momentum transfer is correspondingly lower and therefore resistivity decreases.
+ 
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[t]{0.3\textwidth}
+    \centering
+    \vspace{0pt}
+    \includegraphics[scale=0.35]{resvinvtemp.pdf}
+    \caption{\scriptsize Resistivity vs. inverse temperature}
+  \end{minipage} \hfill
+  \begin{minipage}[t]{0.3\textwidth}
+    \centering
+    \vspace{0pt}
+    \includegraphics[scale=0.35]{condvinvtemp.pdf}
+    \caption{\scriptsize Conduction vs. inverse temperature}
+  \end{minipage}
+\end{figure} 
+
+Once resistivity is calculated we can use equation (6) to solve for the mobility of the charge carriers in the extrinsic region. This plot is shown below along with a plot which shows the fit of each curve in the extrinsic region. The fits found for the mobility plots show that $\mu_{H} \propto T^{-1.51}$ and $\mu_{H} \propto T^{-1.57}$ for the positive and negative magnetic fields, respectively. Additionally, the two zero field fits tells us that $\mu_{H} \propto T^{-1.82}$ for the 'forward' measurements and $\mu_{H} \propto T^{-2.06}$ for the 'reverse' measurements. The expected scaling for zero field mobility is
+\begin{displaymath}
+\mu_{H} = CT^{-2}
+\end{displaymath}
+while the expected scaling for the positive or negative fields is 
+\begin{displaymath}
+\mu_{H} = CT^{-3/2}
+\end{displaymath}
+[1]. Without measurements of error it is difficult to say whether the difference between the measured results and the theoretical predictions are a result of statistical error or incorrect physics. With proper error measurements we would have a better justification for the fits presented below and could say with confidence whether our calculated values are close to the expected values. In the extrinsic region the concentration of electrons is small and the resistivity is due only to the concentration of holes. Using equations (6) and (7) we can see that in this region the mobility of the carriers, the holes, is equal to the Hall mobility. Therefore, the plots below also represent the carrier velocity as a function of temperature.   
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[t]{0.4\textwidth}
+    \centering
+    \vspace{0pt}
+    \includegraphics[scale=0.45]{hallmobvtemp.pdf}
+    \caption{\scriptsize Hall mobility vs temperature}
+  \end{minipage} \hfill
+  \begin{minipage}[t]{0.4\textwidth}
+    \centering
+    \vspace{0pt}
+    \includegraphics[scale=0.45]{hallmobfitvtemp.pdf}
+    \caption{\scriptsize Hall mobility vs temperature, red lines show best fit}
+  \end{minipage}
+\end{figure}
+
+Another calculation we can do is the difference between the resistance measured at zero magnetic field, $R_{0}$, and the resistance measured with either positive or negative magnetic field (magnetoresistance), $R_{B}$. A plot of this calculation vs inverse temperature is shown on the right.
+
+\vfill
+\begin{wrapfigure}{r}{0.5\textwidth}
+  \begin{center}
+    \vspace{-10mm}
+    \includegraphics[width=\linewidth]{rdiffvinvtemp.pdf}
+    \label{fig:carconvtemp}
+    \end{center}
+  \vspace{-12mm}
+  \caption{\scriptsize $R_{B}-R_{0}$ vs inverse temperature}
+\end{wrapfigure}
+
+Four curves are produced from the 2 directional measurements for both the positive and negative field orientations. These plots tells us that in the intrinsic region the difference between the zero field resistance and the magnetoresistance increases as the temperature decreases. In the extrinsic region, this difference decreases as the temperature decreases. The difference peaks around a temperature of 242K, which corresponds to the peak in $\rho$ shown in Figure 11. In essence, this tells us that when the sample is subjected to an external magnetic field it experiences an increase in resistance. This can be understood by considering the Hall effect as a velocity selector. Any carriers with an average velocity will experience a net force of 0 as the force from the Hall field exactly balances the force from the magnetic field. Carriers with a velocity less than or greater than the average will be deflected in opposite directions. This deflection increases resistance as this deflection increases the collision frequency of the carriers. 
+
+\section{Conclusion}
+%==============================
+%End comments about experiement
+%==============================
+This experiment demonstrates the application of the Hall Effect to understanding the physics of semiconductors. By driving a current through a Germanium sample and placing the sample in an external magnetic field, we were able to calculate microscopic quantities such as carrier concentration, for which we found a value of $2\times10^{18}m^{-3}$ for a positive external magnetic field. 
+
+We were also able to use macroscopic quantities, such as the sign of the Hall coefficient, to determine that our semiconductor was a p-type. In the process we measured the Hall coefficient to be $-0.10m^{-3}$. In addition to the numerical calculations, we were able to plot temperature dependencies for a variety of quantities such as mobility, resistivity, and conductance.  
+\section{References}
+%====================================
+%Acknowledgements and text references
+%====================================
+1. D. Orlando. Hall Effect in a Semiconductor, 2015. \textit{http://experimentationlab.berkeley.edu/SHE}
+
+2. Melissinos, Adrian. ``The Hall Effect and Properties of Semiconductors.'' \textit{Experiments in Modern Physics}, pp. 80-98. Academic Press (1966)
+\end{document}
