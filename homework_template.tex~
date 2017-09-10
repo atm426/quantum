@@ -2,8 +2,8 @@
 \usepackage{amsmath, color, graphicx, indentfirst, float, wrapfig}
 \usepackage[margin=1in]{geometry}
 
-\title{Homework }
-\author{Austin McDowell}
+\title{Hall Effect in a Semiconductor}
+\author{Austin McDowell \\ \scriptsize Lab Partner: Mackenzie Moody}
  
 \begin{document}
 \maketitle
